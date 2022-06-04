@@ -10,12 +10,17 @@ from . forms import *
 
 from django.db.models import Q
 
-def UserProfile(request, username):
-    Profile.objects.get_or_create(user=request.user)
-    user = get_object_or_404(User, username=username)
-    profile = Profile.objects.get(user=user)
-    url_name = resolve(request.path).url_name
-    posts = Post.objects.filter(user=user).order_by('-posted')
+def home(request):
+    Register = register.objects.all()
+   
+    return render(request, 'index.html', { "Register" : Register} )
+
+# def UserProfile(request, username):
+#     Profile.objects.get_or_create(user=request.user)
+#     user = get_object_or_404(User, username=username)
+#     profile = Profile.objects.get(user=user)
+#     url_name = resolve(request.path).url_name
+#     posts = Post.objects.filter(user=user).order_by('-posted')
 
     if url_name == 'profile':
         posts = Post.objects.filter(user=user).order_by('-posted')
@@ -76,14 +81,14 @@ def register(request):
             new_user = form.save()
             # Profile.get_or_create(user=request.user)
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Hurray your account was created!!')
+            messages.success(request, f'Your account was successfully created!!')
 
-            # Automatically Log In The User
+            
             new_user = authenticate(username=form.cleaned_data['username'],
                                     password=form.cleaned_data['password1'],)
             login(request, new_user)
             # return redirect('editprofile')
-            return redirect('index')
+        return redirect('index')
             
 
 
@@ -96,6 +101,8 @@ def register(request):
     }
     return render(request, 'sign-up.html', context)
 
+def LogIn(request):
+  pass
 
 # @login_required
 # def inbox(request):
