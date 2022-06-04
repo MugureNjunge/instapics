@@ -159,15 +159,15 @@
 
 #     return render(request, 'directs/search.html', context)
 
-def NewConversation(request, username):
-    from_user = request.user
-    body = ''
-    try:
-        to_user = User.objects.get(username=username)
-    except Exception as e:
-        return redirect('search-users')
-    if from_user != to_user:
-        Message.sender_message(from_user, to_user, body)
-    return redirect('message')    
+# def NewConversation(request, username):
+#     from_user = request.user
+#     body = ''
+#     try:
+#         to_user = User.objects.get(username=username)
+#     except Exception as e:
+#         return redirect('search-users')
+#     if from_user != to_user:
+#         Message.sender_message(from_user, to_user, body)
+#     return redirect('message')    
 
   
