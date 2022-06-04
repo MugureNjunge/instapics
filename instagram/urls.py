@@ -1,6 +1,6 @@
 from django.urls import path
-from instagram import views
-from views import EditProfile, UserProfile
+from . import views
+
 
 # urlpatterns = [
     # Profile Section

@@ -1,7 +1,8 @@
 from django import forms
-from models import Profile
+from . models import Profile, Post, Comment
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+from django import forms
 
 
 
@@ -31,3 +32,23 @@ class UserRegisterForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username', 'email', 'password1', 'password2']
+
+
+class NewPostform(forms.ModelForm):
+    # content = forms.FileField(widget=forms.ClearableFileInput(attrs={'multiple': True}), required=True)
+    
+    picture = forms.ImageField(required=True)
+    caption = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Caption'}), required=True)
+    tags = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Tags | Seperate with comma'}), required=True)
+
+    class Meta:
+        model = Post
+        fields = ['picture', 'caption', 'tags'] 
+
+
+class NewCommentForm(forms.ModelForm):
+    body = forms.CharField(widget=forms.TextInput(attrs={'class': 'input', 'placeholder': 'Write comment'}), required=True)
+    
+    class Meta:
+        model = Comment
+        fields = ("body",)               
