@@ -5,19 +5,29 @@ from django.conf import settings
 
 
 urlpatterns = [
-   path('',views.home, name='home'),
   path('', views.EditProfile, name="editprofile"),
+  path('', views.EditProfile, name="rofile"),
 
   path('sign-up/', views.register, name="sign-up"),
   path('sign-in/', views.LogIn, name='sign-in'),
   # path('sign-out/', views.Logout,  name='sign-out'),
-
-  # path('sign-in/', views.LogIn, redirect_authenticated_user=True, name='sign-in'),
-  # path('category/<int:category_id>/',views.categoryPage , name='image-category'),
-  # path('location/<int:location_id>/',views.locationPage , name='image-location'),
  
-  
+  path('', views.inbox, name="message"),
+  path('direct/<username>', views.Directs, name="directs"),
+  path('send/', views.SendDirect, name="send-directs"),
+  path('search/', views.UserSearch, name="search-users"),
+  path('new/<username>', views.NewConversation, name="conversation"), 
 ]
+
+  # path('', models.Notification, name='show-notification'),
+
+
+
+#   path('newpost', models.NewPost, name='newpost'),
+#   path('<uuid:post_id>', models.PostDetail, name='post-details'),
+#   path('tag/<slug:tag_slug>', models.Tag, name='tags'),
+#   path('<uuid:post_id>/like', models.likes, name='like'),
+# ]
 
 
 if settings.DEBUG:
