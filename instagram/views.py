@@ -12,11 +12,11 @@ import random
 @login_required(login_url='signin')
 def index(request):
     user_object = User.objects.get(username=request.user.username)
-    user_profile = Profile.objects.get(user=user_object)
+    # user_profile = Profile.objects.get(user=user_object)
 
     user_following_list = []
     feed = []
-
+   
     user_following = FollowersCount.objects.filter(follower=request.user.username)
 
     for users in user_following:
@@ -54,7 +54,7 @@ def index(request):
     suggestions_username_profile_list = list(chain(*username_profile_list))
 
 
-    return render(request, 'index.html', {'user_profile': user_profile, 'posts':feed_list, 'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
+    return render(request, 'index.html', {'profile': profile, 'posts':feed_list, 'suggestions_username_profile_list': suggestions_username_profile_list[:4]})
 
 @login_required(login_url='signin')
 def upload(request):
@@ -211,11 +211,11 @@ def signup(request):
                 user_login = auth.authenticate(username=username, password=password)
                 auth.login(request, user_login)
 
-                #create a Profile object for the new user
-                # user_model = User.objects.get(username=username)
+                # create a Profile object for the new user
+                user_model = User.objects.get(username=username)
+                new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
                 # new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
-                # # new_profile = Profile.objects.create(user=user_model, id_user=user_model.id)
-                # new_profile.save()
+                new_profile.save()
                 return redirect('settings')
         else:
             messages.info(request, 'Password Not Matching')

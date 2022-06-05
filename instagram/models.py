@@ -10,7 +10,7 @@ class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     id_user = models.IntegerField(null=True, blank=True, default=None)
     bio = models.TextField(blank=True, default=None)
-    profileimg = models.ImageField(upload_to='profile_images', default='blank-profile-picture.png')
+    profileimg = models.ImageField(upload_to='profile_images', default='blank-profile-picture.jpg')
     location = models.CharField(max_length=100, blank=True, default=None)
 
     def __str__(self):
@@ -36,7 +36,6 @@ class LikePost(models.Model):
 
 class FollowersCount(models.Model):
     follower = models.CharField(max_length=100)
-    follower = models.IntegerField(blank=True, null=True)
     user = models.CharField(max_length=100)
    
 
