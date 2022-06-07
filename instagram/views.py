@@ -99,44 +99,44 @@ def follow(request, username, option):
 
 def register(request):
 
-    if request.method == "POST":
-        form = UserCreationForm(request.POST)
-        if form.is_valid():
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for { username }!!')
+    # if request.method == "POST":
+    #     form = UserCreationForm(request.POST)
+    #     if form.is_valid():
+    #         username = form.cleaned_data.get('username')
+    #         messages.success(request, f'Account created for { username }!!')
 
-            return redirect ('editprofile')
+    #         return redirect ('editprofile')
                
-    else:
-        form = UserCreationForm()
+    # else:
+    #     form = UserCreationForm()
     
-    return render(request, 'sign-up.html', {'form': form})
+    # return render(request, 'sign-up.html', {'form': form})
 
     # form = UserCreationForm()
     # return render(request, 'users/sign-up.html', {'form': form})
     
-    # if request.method == "POST":
-    #     form = UserCreationForm(request.POST)
-    #     if form.is_valid():
-    #         new_user = form.save()
-    #         # Profile.get_or_create(user=request.user)
-    #         username = form.cleaned_data.get('username')
-    #         messages.success(request, f'Account created for { username }!!')
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            new_user = form.save()
+            # Profile.get_or_create(user=request.user)
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for { username }!!')
 
-    #         # Automatically Log In The User
-    #         new_user = authenticate(username=form.cleaned_data['username'],
-    #                                 password=form.cleaned_data['password1'],)
-    #         login(request, new_user)
-    #         # return redirect('editprofile')
-    #         return redirect('index')
+            # Automatically Log In The User
+            new_user = authenticate(username=form.cleaned_data['username'],
+                                    password=form.cleaned_data['password1'],)
+            login(request, new_user)
+            # return redirect('editprofile')
+            return redirect('index')
             
 
 
-    # elif request.user.is_authenticated:
-    #     return redirect('index')
-    # else:
-    #     form = UserCreationForm()
-    # context = {
-    #     'form': form,
-    # }
-    # return render(request, 'sign-up.html', context)
+    elif request.user.is_authenticated:
+        return redirect('editprofile')
+    else:
+        form = UserCreationForm()
+    context = {
+        'form': form,
+    }
+    return render(request, 'sign-up.html', context)
