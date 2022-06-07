@@ -12,6 +12,8 @@ import random
 @login_required(login_url='signin')
 def index(request):
     user_object = User.objects.get(username=request.user.username)
+    # user_profile = user_profile.objects.all()
+
     user_profile = Profile.objects.get(user=user_object)
 
     user_following_list = []
@@ -75,7 +77,9 @@ def upload(request):
 @login_required(login_url='signin')
 def search(request):
     user_object = User.objects.get(username=request.user.username)
-    user_profile = Profile.objects.get(user=user_object)
+    user_profile = Profile.objects.get(User=user_object)
+    # user_profile = Profile.objects.get.all()
+
 
     if request.method == 'POST':
         username = request.POST['username']
@@ -118,9 +122,11 @@ def like_post(request):
 @login_required(login_url='signin')
 def profile(request, pk):
     user_object = User.objects.get(username=pk)
+    # user_profile = Profile.objects.get(user=request.user)
     user_profile = Profile.objects.get(user=user_object)
     user_posts = Post.objects.filter(user=pk)
     user_post_length = len(user_posts)
+
 
     follower = request.user.username
     user = pk
