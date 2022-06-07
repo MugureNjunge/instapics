@@ -1,7 +1,7 @@
 from django.db import models
-from django.db import models
 from django.contrib.auth.models import User
-# from post.models import Post
+from django.db.models.signals import post_save, post_delete
+
 
 class Notification(models.Model):
     NOTIFICATION_TYPES = ((1, 'Like'), (2, 'Comment'), (3, 'Follow'))
@@ -14,6 +14,13 @@ class Notification(models.Model):
     date = models.DateTimeField(auto_now_add=True)
     is_seen = models.BooleanField(default=False)
 
-    # def __str__(self):
-    #     return self.text_preview
+
+    def __str__(self):
+            return self.post    
+
+
+    # post_save.connect(Notification.user_notification_post, sender=User)
+    # post_delete.connect(Notification.user_del_notification_post, sender=User)
+
+    
 

@@ -28,8 +28,8 @@ class Profile(models.Model):
     def __str__(self):
         return f'{self.user.username} - Profile'
 
-    def save(self, *args, **kwargs):
-        super().save(*args, **kwargs)
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
         
         img = Image.open(self.image.path)
         if img.height > 300 or img.width > 300:
@@ -47,3 +47,4 @@ def save_user_profile(sender, instance, **kwargs):
 
 post_save.connect(create_user_profile, sender=User)
 post_save.connect(save_user_profile, sender=User)
+
