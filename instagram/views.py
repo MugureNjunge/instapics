@@ -7,13 +7,13 @@ from django.db import transaction
 from django.contrib.auth.models import User
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib import messages
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 
 
 from post.models import Post, Follow, Stream
 from django.contrib.auth.models import User
 from .models import Profile
-from .forms import EditProfileForm, UserCreationForm
+from .forms import EditProfileForm, UserRegisterForm
 from django.urls import resolve
 from comment.models import Comment
 
@@ -100,27 +100,50 @@ def follow(request, username, option):
 def register(request):
     
     if request.method == "POST":
-        form = UserCreationForm(request.POST)
+        form = UserRegisterForm(request.POST)
         if form.is_valid():
-            new_user = form.save()
+            form.save()
 
-            Profile.get_or_create(user=request.user)
+            # Profile.get_or_create(user=request.user)
             
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Account created for { username }!!')
+            username = form.cleaned_data['username']
+            password = form.cleaned_data['password1']
 
-            # Automatically Log In The User
-            new_user = authenticate(username=form.cleaned_data['username'],
-                                    password=form.cleaned_data['password1'],)
-            login(request, new_user)
-            # return redirect('editprofile')
+            user = authenticate(username=username, password=password)
+            login(request,user)
+            messages.success(request, f'Account created for { username }!!')
+           
             return redirect('index')
 
-    elif request.user.is_authenticated:
-        return redirect('editprofile')
     else:
-        form = UserCreationForm()
+        form = UserRegisterForm()
     context = {
         'form': form,
     }
     return render(request, 'sign-up.html', context)
+
+def signin(request):
+
+    if request.method == 'POST':
+        username = request.POST['username']
+        password = request.POST['password']
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('index')
+        
+        else:
+            messages.success(request,('You information is not valid'))
+            return redirect('sign-in')
+         
+    else:
+
+     return render(request,'sign-in.html')
+
+def signout(request):  
+    logout(request) 
+
+    return redirect('sign-in')
+    
+
+

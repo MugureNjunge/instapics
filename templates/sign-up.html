@@ -22,16 +22,11 @@
           <div class="logo">
             <img src="{% static 'assets2/images/logo.png' %}" alt="logo">
           </div>
-          
-              {{form.username}}
-              {{form.email}}
-              {{form.password1}}
-              {{form.password2}}
 
+             {{ form }}
           
-          <button><a href="{% url 'index' %}" class="form-btn" type="submit">Sign Up</a></button> 
+          <button class="form-btn" type="submit">Sign Up</button> 
 
-          <a class="password-reset" href="#">Forgot password?</a>
         </form>
         <div class="sign-up">
           Already have an account? <a href="{% url 'sign-in' %}">Sign In</a>
