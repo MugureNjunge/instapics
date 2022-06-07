@@ -33,7 +33,6 @@ def UserProfile(request, username):
     posts_count = Post.objects.filter(user=user).count()
     following_count = Follow.objects.filter(follower=user).count()
     followers_count = Follow.objects.filter(following=user).count()
-    # count_comment = Comment.objects.filter(post=posts).count()
     follow_status = Follow.objects.filter(following=user, follower=request.user).exists()
 
     # pagination
@@ -49,13 +48,13 @@ def UserProfile(request, username):
         'followers_count':followers_count,
         'posts_paginator':posts_paginator,
         'follow_status':follow_status,
-        # 'count_comment':count_comment,
+        
     }
     return render(request, 'profile.html', context)
 
 def EditProfile(request):
     user = request.user.id
-    profile = Profile.objects.get(user__id=user)
+    profile = Profile.objects.get(user_id=user)
 
     if request.method == "POST":
         form = EditProfileForm(request.POST, request.FILES, instance=request.user.profile)
@@ -105,7 +104,7 @@ def register(request):
             new_user = form.save()
             # Profile.get_or_create(user=request.user)
             username = form.cleaned_data.get('username')
-            messages.success(request, f'Hurray your account was created!!')
+            messages.success(request, f'Welcome, your account was created!!')
 
             # Automatically Log In The User
             new_user = authenticate(username=form.cleaned_data['username'],
