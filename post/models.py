@@ -33,9 +33,6 @@ class Tag(models.Model):
             self.slug = slugify(self.title)
         return super().save(*args, **kwargs)
 
-# class PostFileContent(models.Model):
-#     user = models.ForeignKey(User, on_delete=models.CASCADE)
-#     file = models.FileField(upload_to=user_directory_path, verbose_name="Choose File")
 
 class Post(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
@@ -49,8 +46,8 @@ class Post(models.Model):
     def get_absolute_url(self):
         return reverse("post-details", args=[str(self.id)])
 
-    # def __str__(self):
-    #     return str(self.caption)
+    def __str__(self):
+        return str(self.caption)
 
 
 class Likes(models.Model):
