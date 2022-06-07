@@ -29,7 +29,7 @@ class Comment(models.Model):
         notify = Notification.objects.filter(post=post, sender=sender, user=post.user, notification_types=2)
         notify.delete()
 
-post_save.connect(Comment.user_comment_post, sender=User)
-post_delete.connect(Comment.user_del_comment_post, sender=User)
+# post_save.connect(Comment.user_comment_post, sender=User)
+# post_delete.connect(Comment.user_del_comment_post, sender=User)
 
 

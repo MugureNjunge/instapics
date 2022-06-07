@@ -23,14 +23,16 @@
             <img src="{% static 'assets2/images/logo.png' %}" alt="logo">
           </div>
           
-            {{form.username}}
-            {{form.email}}
-            {{form.password1}}
-            {{form.password2}}
+              {{form.username}}
+              {{form.email}}
+              {{form.password1}}
+              {{form.password2}}
+
+            
 
           <!-- <button class="btn btn-outline-info" type="submit">Sign up</button> -->
           
-          <button><a href="{% url 'editprofile' %}" class="form-btn" type="submit">Sign Up</a></button> 
+          <button><a href="{% url 'index' %}" class="form-btn" type="submit">Sign Up</a></button> 
 
           <!-- <button class="form-btn" type="submit"><a href="{% url 'editprofile' %}">Sign Up</a></button> -->
 

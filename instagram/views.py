@@ -12,7 +12,7 @@ from django.contrib.auth import authenticate, login
 
 from post.models import Post, Follow, Stream
 from django.contrib.auth.models import User
-from instagram.models import Profile
+from .models import Profile
 from .forms import EditProfileForm, UserCreationForm
 from django.urls import resolve
 from comment.models import Comment
@@ -103,7 +103,9 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             new_user = form.save()
-            # Profile.get_or_create(user=request.user)
+
+            Profile.get_or_create(user=request.user)
+            
             username = form.cleaned_data.get('username')
             messages.success(request, f'Account created for { username }!!')
 
@@ -122,20 +124,3 @@ def register(request):
         'form': form,
     }
     return render(request, 'sign-up.html', context)
-
-
-      # if request.method == "POST":
-    #     form = UserCreationForm(request.POST)
-    #     if form.is_valid():
-    #         username = form.cleaned_data.get('username')
-    #         messages.success(request, f'Account created for { username }!!')
-
-    #         return redirect ('editprofile')
-               
-    # else:
-    #     form = UserCreationForm()
-    
-    # return render(request, 'sign-up.html', {'form': form})
-
-    # form = UserCreationForm()
-    # return render(request, 'users/sign-up.html', {'form': form})
