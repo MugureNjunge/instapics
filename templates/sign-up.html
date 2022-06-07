@@ -16,7 +16,6 @@
 
   <div id="wrapper">
     <div class="container">
-      <div class="phone-app-demo"></div>
       <div class="form-data">
         <form action="" method="POST">
           {% csrf_token %}
@@ -29,10 +28,11 @@
             {{form.password1}}
             {{form.password2}}
 
-          <!-- <button class="form-btn" type="submit">Sign up</button> -->
+          <button class="btn btn-outline-info" type="submit">Sign up</button>
+          
           <!-- <a href="editprofile.html" class="form-btn" type="submit">Sign Up</a> -->
-
-          <button class="form-btn" type="submit"><a href="{% url 'editprofile' %}">Sign Up</a></button>
+<!-- 
+          <button class="form-btn" type="submit"><a href="{% url 'editprofile' %}">Sign Up</a></button> -->
 
           <a class="password-reset" href="#">Forgot password?</a>
         </form>

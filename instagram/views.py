@@ -13,7 +13,7 @@ from django.contrib.auth import authenticate, login
 from post.models import Post, Follow, Stream
 from django.contrib.auth.models import User
 from instagram.models import Profile
-from .forms import EditProfileForm, UserRegisterForm
+from .forms import EditProfileForm, UserCreationForm
 from django.urls import resolve
 from comment.models import Comment
 
@@ -98,28 +98,45 @@ def follow(request, username, option):
 
 
 def register(request):
-    if request.method == "POST":
-        form = UserRegisterForm(request.POST)
-        if form.is_valid():
-            new_user = form.save()
-            # Profile.get_or_create(user=request.user)
-            username = form.cleaned_data.get('username')
-            messages.success(request, f'Welcome, your account was created!!')
 
-            # Automatically Log In The User
-            new_user = authenticate(username=form.cleaned_data['username'],
-                                    password=form.cleaned_data['password1'],)
-            login(request, new_user)
-            # return redirect('editprofile')
-            return redirect('index')
+    if request.method == "POST":
+        form = UserCreationForm(request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Account created for { username }!!')
+
+            return redirect ('editprofile')
+               
+    else:
+        form = UserCreationForm()
+    
+    return render(request, 'sign-up.html', {'form': form})
+
+    # form = UserCreationForm()
+    # return render(request, 'users/sign-up.html', {'form': form})
+    
+    # if request.method == "POST":
+    #     form = UserCreationForm(request.POST)
+    #     if form.is_valid():
+    #         new_user = form.save()
+    #         # Profile.get_or_create(user=request.user)
+    #         username = form.cleaned_data.get('username')
+    #         messages.success(request, f'Account created for { username }!!')
+
+    #         # Automatically Log In The User
+    #         new_user = authenticate(username=form.cleaned_data['username'],
+    #                                 password=form.cleaned_data['password1'],)
+    #         login(request, new_user)
+    #         # return redirect('editprofile')
+    #         return redirect('index')
             
 
 
-    elif request.user.is_authenticated:
-        return redirect('index')
-    else:
-        form = UserRegisterForm()
-    context = {
-        'form': form,
-    }
-    return render(request, 'sign-up.html', context)
+    # elif request.user.is_authenticated:
+    #     return redirect('index')
+    # else:
+    #     form = UserCreationForm()
+    # context = {
+    #     'form': form,
+    # }
+    # return render(request, 'sign-up.html', context)
