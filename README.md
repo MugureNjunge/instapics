@@ -1,11 +1,11 @@
-**Project Description**
+  **Sneakpeak**
 
-Picturesq is a Photos application showcasing a colllection of posts from different users. Users get to sign , follow others , add their own pictures as well as like and comment on posts on their feed.
+Instapics is a Photos application showcasing a collection of posts from different users. Users get to sign in/sign up, follow others , add their own pictures as well as like and comment on posts on their feed.
 
 <img src="./static/images/homepage.png">
-<br>
 
-**Project description**
+
+  **Project description**
 
 Users get to view photos uploaded by followers as well as their own.
 
@@ -23,7 +23,7 @@ Users can comment and like posts on their feed
 <img src="./static/images/comment.png">
 
 
-**BDD**
+  **BDD**
 
 Click on the project link and sign up, if an already existing user then sign in.
 
@@ -38,7 +38,7 @@ Add as many post as you would like
 <img src="./static/images/addpost.png">
 
 
-**Getting Started**
+  **Getting Started**
 
 To clone the repository, run:
 
@@ -48,7 +48,7 @@ Then navigating to the cloned directory:
 
 cd instapics
 
-**Requirements**
+  **Requirements**
 
 The Instapics app requires one to understand :
 
@@ -60,7 +60,7 @@ Postgres
 
 Virtual environment
 
-**Setup and installation**
+  **Setup and installation**
 
 Install and activate virtual environment
 
@@ -74,24 +74,24 @@ Create the Database
 
 Create .env file
 
-**Run initial Migration**
+  **Run initial Migration**
 
 python3.8 manage.py makemigrations <do this for all apps in project>
 
 python3.8 manage.py migrate
 
-**Run the application**
+  **Run the application**
 
 python3.8 manage.py runserver
 
 Follow link provided after running to open app on local host:8000
 
-**Deployment**
+  **Deployment**
 
 The application is deployed on Heroku and is live on this link: 
 
 
-**Built With/Technologies**
+  **Built With/Technologies**
 
 Django 4 - Back end logic
 
@@ -99,16 +99,16 @@ Bootstrap - Application design
 
 Pillow - Upload images
 
-**Contact:**
+  **Contact:**
 
 Incase of any question or contributions, you can contact me through: maureen.njunge@student.moringaschool.com
 
 
-**License**
+  **License**
 
 This project is licensed under the terms of the MIT license
 
-**Copyright (c) 2022 Mugure Njung'e**
+  **Copyright (c) 2022 Mugure Njung'e**
 
 
 

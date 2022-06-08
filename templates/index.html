@@ -244,13 +244,7 @@
                                     <span>@{{user.username}}</span>
                                 </div><br>
                                 <br>
-                                <div class="foll">
-                                    {% if follow_status == True %}
-                                    <a href="{% url 'follow' user 0 %}" class="side-menu__suggestion-button">Follow</a>
-                                    {% else %}
-                                    <a href="{% url 'follow' user 1 %}" class="side-menu__suggestion-button">Unfollow</a>
-                                    {% endif %}
-                                </div>    
+                                
                             </div>
                             {% endif %}
                         {% endfor %}

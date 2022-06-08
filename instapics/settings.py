@@ -176,7 +176,6 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 LOGIN_REDIRECT_URL = 'index'
 
 LOGIN_URL = 'sign-in'
-Mugure01
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
