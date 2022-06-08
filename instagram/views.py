@@ -18,11 +18,17 @@ from django.urls import resolve
 from comment.models import Comment
 
 def UserProfile(request, username):
+   
     Profile.objects.get_or_create(user=request.user)
     user = get_object_or_404(User, username=username)
     profile = Profile.objects.get(user=user)
     url_name = resolve(request.path).url_name
     posts = Post.objects.filter(user=user).order_by('-posted')
+
+    # user = UserRegisterForm.save()
+    # profile = EditProfileForm.save(commit=False)
+    # profile.user = user  
+    # profile.save()
 
     if url_name == 'profile':
         posts = Post.objects.filter(user=user).order_by('-posted')
@@ -96,6 +102,27 @@ def follow(request, username, option):
     except User.DoesNotExist:
         return HttpResponseRedirect(reverse('profile', args=[username]))
 
+# def register(request):
+#     if request.method == 'POST':
+#         form = UserRegisterForm(request.POST)
+#         profile_form = EditProfileForm(request.POST)
+#         if form.is_valid() and profile_form.is_valid():
+#             form.save()
+#             profile = profile_form.save(commit=False)
+#             profile.user = Profile.objects.get(user=request.user)  
+#             profile.save()
+
+#             username = form.cleaned_data.get('username')
+#             messages.success(request, f'Your account has been created! You are now able to log in')
+#             return redirect('login')
+#     else:
+#         form = UserRegisterForm()
+#         profile_form = EditProfileForm
+#     return render(request, 'users/register.html', {'form': form, 'profile_form': profile_form})
+
+# @login_required
+# def profile(request):
+#     return render(request, 'editprofile.html')
 
 def register(request):
     
@@ -105,7 +132,7 @@ def register(request):
             form.save()
 
             # Profile.get_or_create(user=request.user)
-            
+        
             username = form.cleaned_data['username']
             password = form.cleaned_data['password1']
 
