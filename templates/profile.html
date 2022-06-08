@@ -38,7 +38,7 @@
 
                 <div class="profile-user-settings">
                         {% if profile.first_name %}
-                        <h6 class="profile-user-name">{{profile.first_name}} {{profile.last_name}}</h6> <br>
+                        <h6 class="profile-user-name">{{profile.first_name}} {{profile.last_name}}</h6><br> <br>
                         {% endif %}
                         <h5 style="font-size: 15px;" class="profile-user-name">@{{profile.user.username}}</h5>
 
@@ -75,10 +75,10 @@
                 <div class="profile-bio">
                     <br>
                     {% if profile.bio %}
-                    <p><span class="profile-real-name"></span>◉ {{profile.bio}}</p>
+                    <p><span class="profile-real-name"></span>{{profile.bio}}</p>
                     {% endif %}
                     {% if profile.location %}
-                    <p><span class="profile-real-name"></span>◉ {{profile.location}}</p>
+                    <p><span class="profile-real-name"></span>Location : {{profile.location}}</p>
                     {% endif %}
                     {% if profile.url %}
                     <p><span class="profile-real-name"></span>◉ <a href="{{profile.url}}">{{profile.url}}</a></p>

@@ -173,10 +173,10 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
-# LOGIN_REDIRECT_URL = 'instagram-sign-in'
+LOGIN_REDIRECT_URL = 'index'
 
-
-# LOGIN_URL = 'sign-in'
+LOGIN_URL = 'sign-in'
+Mugure01
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
