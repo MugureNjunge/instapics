@@ -89,7 +89,7 @@ Follow link provided after running to open app on local host:8000
   **Deployment**
 
 The application is deployed on Heroku and is live on this link: 
-
+https://instapicsgram.herokuapp.com/
 
   **Built With/Technologies**
 
